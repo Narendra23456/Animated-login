@@ -1,8 +1,23 @@
+:root {
+    --bg1: #6a11cb;
+    --bg2: #2575fc;
+    --text: white;
+    --box: rgba(255, 255, 255, 0.1);
+}
+
+/* LIGHT MODE */
+.light {
+    --bg1: #ff9a9e;
+    --bg2: #fad0c4;
+    --text: black;
+    --box: rgba(0, 0, 0, 0.1);
+}
+
 * {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
     box-sizing: border-box;
+    font-family: Arial;
 }
 
 body {
@@ -11,9 +26,10 @@ body {
     justify-content: center;
     align-items: center;
 
-    background: linear-gradient(270deg, #6a11cb, #2575fc);
+    background: linear-gradient(270deg, var(--bg1), var(--bg2));
     background-size: 400% 400%;
     animation: gradientMove 8s ease infinite;
+    color: var(--text);
 }
 
 @keyframes gradientMove {
@@ -30,14 +46,26 @@ body {
     }
 }
 
+.toggle-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+#themeToggle {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
 .container {
-    position: relative;
-    width: 300px;
+    width: 320px;
 }
 
 .login-box,
 .welcome-box {
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--box);
     padding: 30px;
     border-radius: 12px;
     backdrop-filter: blur(10px);
@@ -46,42 +74,43 @@ body {
     transition: 0.5s;
 }
 
-.login-box h2 {
-    margin-bottom: 20px;
-    color: white;
-}
-
+/* INPUT BOX */
 .input-box {
     position: relative;
     margin: 20px 0;
 }
 
-.input-box input {
+.input-box input,
+.input-box select {
     width: 100%;
     padding: 10px;
     border: none;
     outline: none;
     background: transparent;
-    border-bottom: 2px solid white;
-    color: white;
+    border-bottom: 2px solid var(--text);
+    color: var(--text);
 }
 
+/* LABEL */
 .input-box label {
     position: absolute;
     left: 0;
     top: 10px;
-    color: white;
-    pointer-events: none;
     transition: 0.3s;
+    pointer-events: none;
 }
 
+/* FLOAT EFFECT */
 .input-box input:focus+label,
-.input-box input:valid+label {
+.input-box input:valid+label,
+.input-box select:focus+label,
+.input-box select:valid+label {
     top: -10px;
     font-size: 12px;
     color: #00ffcc;
 }
 
+/* BUTTON */
 button {
     margin-top: 20px;
     padding: 10px;
@@ -99,11 +128,7 @@ button:hover {
     background: #00ccaa;
 }
 
+/* WELCOME */
 .welcome-box {
     display: none;
-    color: white;
-}
-
-.welcome-box h1 {
-    margin-bottom: 10px;
 }
